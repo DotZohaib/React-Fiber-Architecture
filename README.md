@@ -107,17 +107,67 @@ function FiberNode(tag, key, pendingProps, memoizedProps, returnFiber, child, si
 }
 ```
 
+Here's the revised README.md entry with main headings in `**` and other headings in `*`:
 
-tag: This property identifies the type of the React element this fiber represents. It can be Host for a DOM element, FunctionComponent for a functional component, ClassComponent for a class component, etc.
-key: This is an optional but crucial property for elements within lists. It should be unique and stable across renders to optimize reconciliation.
-pendingProps: These are the incoming props passed to the component before reconciliation occurs.
-memoizedProps: These are the props used for the previous render of the component. They are helpful for detecting prop changes during reconciliation.
-returnFiber: This points to the parent fiber in the component tree.
-child: This refers to the first child fiber of the current fiber.
-sibling: This points to the next sibling fiber in the tree hierarchy.
-alternate: This is an interesting concept. It represents an alternate fiber, usually used during the reconciliation process. When updates occur, a new fiber is created with the updated state. The alternate holds the previous version of the fiber for comparison.
-effectTag: This property uses flags to indicate side effects that need to be performed after the reconciliation phase. These flags can include placement (adding a new element), update (updating an existing element), or deletion (removing an element).
-updateQueue: This queue holds any pending state updates for the component represented by the fiber.
+---
 
+**# React Fiber Architecture**
 
-[Source and related Content](https://blog.openreplay.com/react-fiber-explained/)
+**## Fiber Properties**
+
+Each FiberNode represents a unit of work in React Fiber. Key properties include:
+
+* **`tag`** (String): Identifies the type of React element the fiber represents. Possible values:
+  - `Host`: Represents a DOM element.
+  - `FunctionComponent`: Represents a functional component.
+  - `ClassComponent`: Represents a class component.
+  - Other types may exist depending on React's implementation.
+
+* **`key`** (Optional String): A unique identifier for the element within lists. Essential for efficient reconciliation. Keys should be stable and predictable across renders.
+
+* **`pendingProps`** (Object): The incoming props passed to the component before reconciliation occurs.
+
+* **`memoizedProps`** (Object): The props used for the previous render of the component, helping to detect prop changes during reconciliation.
+
+* **`returnFiber`** (FiberNode): Points to the parent fiber in the component tree, establishing the hierarchical relationship.
+
+* **`child`** (FiberNode): Represents the first child fiber of the current fiber.
+
+* **`sibling`** (FiberNode): Points to the next sibling fiber in the tree hierarchy, facilitating traversal of the component tree structure.
+
+* **`alternate`** (FiberNode): Holds the previous version of the fiber for comparison during reconciliation, enabling efficient diffing. When updates occur, a new fiber is created with the updated state.
+
+* **`effectTag`** (Number): A bitmask representing side effects that need to be performed after reconciliation. Examples include:
+  - `PLACEMENT`: Adding a new element.
+  - `UPDATE`: Updating an existing element.
+  - `DELETION`: Removing an element.
+
+* **`updateQueue`** (Object or Array): Holds pending state updates for the component represented by the fiber.
+
+**## Fiber Creation and Reconciliation**
+
+* **`createFiber`**
+
+Creates a new `FiberNode` instance with the following parameters:
+- `tag`: The type of the fiber.
+- `key`: The unique identifier for the element.
+- `pendingProps`: The props passed to the component.
+- `returnFiber`: The parent fiber.
+
+* **`reconcileChildren`**
+
+Responsible for reconciling the children of a component. It involves:
+1. Iterating through the `children` prop (an array of elements).
+2. Checking if an existing fiber can be reused for a child element.
+3. Creating a new fiber with `createFiber` if no reusable fiber exists.
+4. Recursively reconciling each child element.
+
+The function returns the first child fiber created during reconciliation.
+
+---
+
+Feel free to make any additional changes or let me know if there's anything else you need!
+
+### Related Content
+
+[Source on React Fiber explained ](https://blog.openreplay.com/react-fiber-explained/)
