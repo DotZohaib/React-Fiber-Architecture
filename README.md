@@ -111,9 +111,8 @@ Here's the revised README.md entry with main headings in `**` and other headings
 
 ---
 
-**# React Fiber Architecture**
 
-**## Fiber Properties**
+## Fiber Properties**
 
 Each FiberNode represents a unit of work in React Fiber. Key properties include:
 
@@ -144,7 +143,7 @@ Each FiberNode represents a unit of work in React Fiber. Key properties include:
 
 * **`updateQueue`** (Object or Array): Holds pending state updates for the component represented by the fiber.
 
-**## Fiber Creation and Reconciliation**
+## Fiber Creation and Reconciliation**
 
 * **`createFiber`**
 
@@ -166,7 +165,6 @@ The function returns the first child fiber created during reconciliation.
 
 ---
 
-Feel free to make any additional changes or let me know if there's anything else you need!
 
 ### Related Content
 
