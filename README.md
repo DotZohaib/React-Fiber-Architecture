@@ -92,7 +92,7 @@ React Fiber addresses these issues by introducing **fibers**, which act as virtu
 * **Aborting work if it's no longer needed.**
 
 ## Fiber Node Structure Breakdown
-
+```js
 function FiberNode(tag, key, pendingProps, memoizedProps, returnFiber, child, sibling,   alternate, effectTag, updateQueue) {
   this.tag = tag; // Type of node (Host, FunctionComponent, ClassComponent, etc.)
   this.key = key; // Unique identifier for the element
@@ -105,7 +105,7 @@ function FiberNode(tag, key, pendingProps, memoizedProps, returnFiber, child, si
   this.effectTag = effectTag; // Flags for side effects (placement, update, deletion)
   this.updateQueue = updateQueue; // Queue of pending state updates
 }
-
+```
 
 
 tag: This property identifies the type of the React element this fiber represents. It can be Host for a DOM element, FunctionComponent for a functional component, ClassComponent for a class component, etc.
